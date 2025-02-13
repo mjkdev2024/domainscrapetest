@@ -28,14 +28,35 @@ def capture_screenshot(url, output_path="screenshot.png"):
         page.screenshot(path=output_path, full_page=True)
         browser.close()
 
+def process_text_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        lines = [line.strip() for line in file.readlines()]
+    
+    processed_lines = []
+    for line in lines:
+        original = f"https://{line}.com"
+        duplicate = f"https://www.{line}.com"
+        processed_lines.append(original)
+        processed_lines.append(duplicate)
+    
+    return processed_lines
+
+# Example usage
+file_path = "input.txt"  # Replace with your actual file path
+results = process_text_file(file_path)
+
+# Print or save the result
+for line in results:
+    print(line)
+
 # capture_screenshot("https://minimaru.com/", "example.png")
 
 urls = [
-    "https://minimaru.com/",
+    "https://www.wolfblass.com/",
     "https://wolfblass.com"
 ]
 
-results = [check_website(url) for url in urls]
+# results = [check_website(url) for url in urls]
 
-for result in results:
-    print(result)
+# for result in results:
+#     print(result)
